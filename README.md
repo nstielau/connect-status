@@ -2,6 +2,10 @@
 
 Connect-Status is a middleware layer for Connect that provides status information, like average requests-per-second, and detailed request duration information.
 
+## Disclaimer:
+
+This is not used in production.  I'll let you know when it is.
+
 ## Features
 
 Track a few key status metrics:
