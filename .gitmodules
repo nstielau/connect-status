@@ -1,0 +1,12 @@
+[submodule "expresso"]
+	path = expresso
+	url = https://github.com/visionmedia/expresso.git
+[submodule "support/espresso"]
+	path = support/espresso
+	url = https://github.com/visionmedia/expresso.git
+[submodule "support/expresso"]
+	path = support/expresso
+	url = https://github.com/visionmedia/expresso.git
+[submodule "support/connect"]
+	path = support/connect
+	url = http://github.com/senchalabs/connect.git
