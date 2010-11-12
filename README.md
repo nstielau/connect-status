@@ -43,17 +43,14 @@ The simplest connect app looks just like `http.Server` instances from node.  In 
             "server_load_time":"2010-11-12T21:37:36.493Z",
             "requests_per_second":"0.21",
             "uptime":"14",
-            "requests_by_status_code":
-            {
+            "requests_by_status_code": {
                 "200":3
             },
-            "requests_by_duration":
-            {
+            "requests_by_duration": {
                 "0":2,
                 "1":1
             },
-            "requests_by_path":
-            {
+            "requests_by_path": {
                 "/page_1":1,
                 "/page_2":2
             }
