@@ -117,20 +117,25 @@ module.exports = {
           assert.equal(result.requests_by_path['/b?x=y'], 1, "Test the number of /b hits is correct. Should be " + 1 + ", is " + result.requests_by_path['/b?x=y']);
           assert.equal(result.requests_by_path['/c'], 2, "Test the number of /c hits is correct. Should be " + 2 + ", is " + result.requests_by_path['/c']);
         });
+    },
+    'test request duration status': function(){
+        var server = helpers.run();
+        server.use('/', status.status({durations: true}));
+        server.use('/', connect.router(mock));
+        server.use('/', connect.errorHandler({ showMessage: true }));
+
+        server.assertResponse('GET', '/500');
+        server.assertResponse('GET', '/404');
+        server.assertResponse('GET', '/that');
+
+        server.assertResponse('GET', '/status', 200, null, '', function(response) {
+          var result = JSON.parse(response.body);
+          assert.isDefined(result.requests_by_duration, "Test the requests_by_duration should be present")
+          var total_hits = 0;
+          for (var duration in result.requests_by_duration) {
+            total_hits = total_hits + result.requests_by_duration[duration];
+          }
+          assert.equal(total_hits, 3, "Test the number of hits is correct. Should be " + total_hits + ", is " + result.requests_by_duration['0']);
+        });
     }
-    //     'test request duration status': function(){
-    //         var server = helpers.run();
-    //         server.use('/', connect.status({status_codes: true}));
-    //         server.use('/', connect.router(mock));
-    //         server.use('/', connect.errorHandler({ showMessage: true }));
-    //
-    //         server.request('GET', '/500');
-    //         server.request('GET', '/404');
-    //         server.request('GET', '/that');
-    //
-    //         server.assertResponse('GET', '/status/status_codes', 200, 'editing user 99', 'Test router GET matched path with several params with trailing slash');
-    //         assert(JSON.parse(server.request('GET', '/status/status_code')).500 == 2);
-    //         assert(JSON.parse(server.request('GET', '/status/status_code')).404 == 3);
-    //         assert(JSON.parse(server.request('GET', '/status/status_code')).200 == 4);
-    //     }
 }
