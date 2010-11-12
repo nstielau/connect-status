@@ -76,7 +76,7 @@ Then run the test suites located in _./test_ with the following command:
 
 Run a single test, or use a custom glob pattern:
 
-    $ make test TESTS=test/connect.test.js
+    $ make test TESTS=test/status.test.js
 
 ## License
 
